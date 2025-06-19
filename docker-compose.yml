@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  backend:
+    container_name: enelmed-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/var/www/html
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=base64:DiySjg4n8cIOsO3mWOgLAjV3BPj3CtGJT0v6hGncMdM=
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=enel_med
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    depends_on:
+      - db
+  frontend:
+    container_name: enelmed-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    command: sh -c "npm install && npm run dev"
+  db:
+    container_name: enelmed-db
+    image: mysql:8.0
+    environment:
+      - MYSQL_DATABASE=enel_med
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data: 

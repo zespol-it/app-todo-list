@@ -1,0 +1,44 @@
+Zadanie Rekrutacyjne – Full Stack Developer
+
+Cel zadania:
+Twoim zadaniem jest stworzenie prostego systemu zarządzania zadaniami (To-Do List) z możliwością dodawania, edytowania, usuwania oraz oznaczania zadań jako ukończone.
+Projekt powinien składać się z backendu w PHP (Laravel) oraz frontendowej aplikacji w Vue.js z Tailwind CSS.
+
+Wymagania techniczne:
+# Backend (Laravel (Spatie/Laravel-permission, Tailwindcss, Vite, Jetstream, Livewire)):
+1. Stwórz aplikację Laravel z REST API do zarządzania zadaniami.
+2. Utwórz model Task z następującymi polami:
+- id (klucz główny, autoinkrementacja)
+- title (string, maks. 255 znaków, wymagane)
+- description (text, opcjonalne)
+- status (enum: pending, completed, domyślnie pending)
+- created_at, updated_at (timestamps)
+
+3. Stwórz migrację do tabeli tasks.
+
+4. Zaimplementuj kontroler REST API (TaskController) z metodami:
+- index() – pobiera wszystkie zadania
+- store() – tworzy nowe zadanie
+- update() – edytuje istniejące zadanie
+- destroy() – usuwa zadanie
+
+5. Obsłuż walidację i odpowiednie kody statusu HTTP.
+
+6. Umożliw CORS, aby frontend mógł komunikować się z API.
+
+# Frontend (Vue.js + Tailwind CSS):
+1. Stwórz aplikację Vue 3 z obsługą Vite.
+2. Zaimplementuj komponent TaskList.vue, który pobiera listę zadań z API i wyświetla je w estetycznej tabeli.
+3. Stwórz formularz do dodawania nowych zadań (TaskForm.vue).
+4. Umożliw edycję oraz usuwanie zadań.
+5. Zaimplementuj przycisk do oznaczania zadania jako ukończone.
+6. Styluj interfejs przy użyciu Tailwind CSS.
+
+Dodatkowe punkty za:
+-Dodanie podstawowych testów jednostkowych (PHPUnit / Jest)
+-Obsługę błędów w UI (np. alerty)
+-Podstawowe animacje w Vue (np. dla dodawania/usuwania elementów)
+-Docker Compose dla łatwego uruchomienia aplikacji
+
+Sposób dostarczenia:
+- Dołącz instrukcję uruchomienia w pliku README.md.
